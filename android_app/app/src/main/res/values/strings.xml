@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AirMic</string>
+    <string name="notification_channel_name">AirMic Live Stream</string>
+    <string name="notification_channel_desc">Active microphone audio streaming service</string>
+</resources>
