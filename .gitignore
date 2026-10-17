@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pdb
 
 # Virtual environments
 venv/
@@ -22,6 +23,7 @@ android_app/.idea/
 Thumbs.db
 Desktop.ini
 
-# Keep precompiled APK in root and apk/ directory for easy transfer
+# Precompiled Binaries for Easy Transfer
 !AirMic.apk
 !apk/AirMic.apk
+!AirMic_Receiver.exe

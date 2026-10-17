@@ -240,9 +240,14 @@ class NetworkServer:
                 if was_disconnected and self.on_status_change:
                     self.on_status_change(connected=True, client_ip=self.client_ip, message=f"Phone connected: {self.client_ip} (UDP)")
 
+                # Check for 8-byte AMIC header
+                pcm_data = data
+                if len(data) > 8 and data[:4] == b"AMIC":
+                    pcm_data = data[8:]
+
                 # Forward raw PCM chunk to AudioEngine
                 if self.on_audio_chunk:
-                    self.on_audio_chunk(data)
+                    self.on_audio_chunk(pcm_data)
 
             except socket.timeout:
                 continue
@@ -277,8 +282,11 @@ class NetworkServer:
                             break
                         self.last_packet_time = time.time()
                         self.total_bytes_received += len(chunk)
+                        pcm_chunk = chunk
+                        if len(chunk) > 8 and chunk[:4] == b"AMIC":
+                            pcm_chunk = chunk[8:]
                         if self.on_audio_chunk:
-                            self.on_audio_chunk(chunk)
+                            self.on_audio_chunk(pcm_chunk)
                     except socket.timeout:
                         continue
                     except Exception:
