@@ -22,5 +22,6 @@ android_app/.idea/
 Thumbs.db
 Desktop.ini
 
-# Keep precompiled APK in root apk/ directory for easy transfer
+# Keep precompiled APK in root and apk/ directory for easy transfer
+!AirMic.apk
 !apk/AirMic.apk
